@@ -20,6 +20,8 @@ Meteor.methods({
         {
             Meteor.call("_cancelPollRequest", reqId); // Cancel the request, since it's been submitted
 
+            user = Meteor.user();
+            
             if(question.charAt(question.length - 1) != "?") question = question + "?"; // Add a nice little question mark at the end
 
             resps = [];
