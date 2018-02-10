@@ -3,7 +3,6 @@ if(Meteor.isClient)
     Template["chat.pollInsert"].helpers({
 
         creator: function () {
-            console.log(Template.instance().data);
             return Template.instance().data.pollCreator == Meteor.userId();
         }
 
@@ -12,13 +11,12 @@ if(Meteor.isClient)
     Template["chat.pollInsert"].events({
 
         'click #cancelPoll': function (e,t) {
-            console.log(Template.instance().data);
             Meteor.call("_cancelPollRequest", Template.instance().data._id);
         },
 
         'click #sendPoll': function (e,t) {
             question = $('#_pollQuestion' + Template.instance().data._id).val();
-            responses = ["Yes", "No"];
+            responses = ["Yes", "No"]; // TODO User-selected responses. Waiting on UI.
             Meteor.call("_pollCreate", question, responses, Template.instance().data._id, Template.instance().data.chatId);
 
         },
