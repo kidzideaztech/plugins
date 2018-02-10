@@ -3,12 +3,9 @@
         {{#with poll this.pollId}}
          
             <h3 style="margin-bottom: 5px;">{{question}}</h3>
-            <strong>Created by: @{{creatorUsername}}</strong><br>
-            {{#if voted}}
-            You have already voted<br>
-            {{/if}}
+            <strong>Created by: @{{creatorUsername}}</strong><br>            
             {{#each responses}}
-                <span class="response">{{response}} ({{thisRepVotes}})</span><br>
+                <span class="">{{response}} {{#if voted}}({{thisRepVotes}}){{else}}<a href="#" class="response">Vote</a>{{/if}}</span><br>
             {{/each}}
         {{/with}}
     </div>
