@@ -13,20 +13,13 @@ Meteor.methods({
     },
     
     _pollCreate: function (question, responses, reqId, chatId) {
-        Meteor.call("_cancelPollRequest", reqId);
+        Meteor.call("_cancelPollRequest", reqId); // Cancel the request, since it's been submitted
         
-        if(question.charAt(question.length - 1) != "?") 
-        {
-            question = question + "?";
-        }
+        if(question.charAt(question.length - 1) != "?") question = question + "?"; // Add a nice little question mark at the end
         
         resps = [];
-        
         for(i=0;i<responses.length;i++) {
-            resps.push({
-                "id":i,
-                "response":responses[i],
-            })
+            resps.push({"id":i, "response":responses[i],})
         }
         
         votes = new Object();
@@ -34,8 +27,7 @@ Meteor.methods({
             votes[i] = [];
         }        
         
-        if(!Meteor.user().profile || !Meteor.user().profile.username) username = "NO_USERNAME";
-        else username = Meteor.user().profile.username;
+        username = Meteor.user().profile.username;
 
         poll = {
             "question":question,
@@ -46,6 +38,7 @@ Meteor.methods({
             "creatorUsername":username,
             "creationDate":new Date()
         }
+        
         pollId = _PollsCollection.insert(poll);        
 
         Messages.insert({
@@ -63,19 +56,9 @@ Meteor.methods({
         });        
     },
     
-    _pollRequest: function (chatId) {
-        Messages.insert({
-            "type":"chat.insertPoll",
-            "sender":Meteor.userId()
-        })
-    },
-    
     _cancelPollRequest: function (messageId) {
         message = Messages.findOne({_id:messageId});
-        if(message.type == "chat.pollInsert")
-        {
-            Messages.remove({_id:message._id});
-        }
+        if(message.type === "chat.pollInsert" && message.sender === Meteor.userId()) Messages.remove({_id:message._id});
     }
     
 })
