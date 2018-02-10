@@ -28,30 +28,23 @@ if(Meteor.isClient)
     Template["chat.poll"].helpers({
 
         poll: function (a) {
-            a = Template.instance().data.pollId;
-            Meteor.subscribe("_poll", a);
-            poll = _PollsCollection.findOne({_id:a})
-            return poll;
+            Meteor.subscribe("_poll", Template.instance().data.pollId);
+            return _PollsCollection.findOne({_id:Template.instance().data.pollId});
         },
 
         thisRepVotes: function () {
-            pollId = Template.instance().data.pollId;
-            // console.log(this);
-            return _PollsCollection.findOne({_id:pollId}).votes[this.id].length;
+            return _PollsCollection.findOne({_id:Template.instance().data.pollId}).votes[this.id].length;
         },
 
         voted: function () {
-            userId = Meteor.userId();
-            pollId = Template.instance().data.pollId;
-            return _PollsCollection.findOne({_id:pollId}).voters.indexOf(userId) != -1;
+            return _PollsCollection.findOne({_id:Template.instance().data.pollId}).voters.indexOf(Meteor.userId()) != -1;
         }
     });
 
     Template["chat.poll"].events({
 
         'click .response': function (e,t) {
-            id = this.id;  
-            Meteor.call("_pollVote", Template.instance().data.pollId, id)
+            Meteor.call("_pollVote", Template.instance().data.pollId, this.id)
         }
 
     });
