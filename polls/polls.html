@@ -21,13 +21,21 @@
         <strong>Insert a poll <a href="#" id="cancelPoll">Cancel</a></strong><br>
         <small>Question</small>
         <input class="form-control" id="_pollQuestion{{this._id}}" placeholder="Question...">
-        
+        <div style="height:0.5em;"></div>
+        <small>Add Responses</small>
+        <input class="form-control" value="" style="margin-bottom: 0.2em;" placeholder="Enter a response and hit enter to save..." id="pollResponseAdd">
+        <div style="height:0.5em;"></div>
         <small>Responses</small>
-        <input class="form-control" value="" style="margin-bottom: 0.2em;" placeholder="Add another response.." id="pollResponseAdd">
         {{#each boxes}}
         <li>{{this}} <a href="#" class="removeResponse" id="{{@index}}"><i class="fa fa-times"></i></a></li>
         {{/each}}
+        {{#unless boxes}}
         <br>
+        No responses added
+        <br>
+        {{/unless}}
+        <br>
+        <small style="color: red;">{{errorMessage}}</small>
         <button id="sendPoll" class="_polls-outlineButtonPolls">Submit</button>
     </div>
 {{/if}}</template>
