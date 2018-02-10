@@ -51,7 +51,7 @@ Meteor.methods({
 
             Messages.insert({
                 "sender":user._id,
-                "senderName":user.profile.username,
+                "senderName":username,
                 "nicetime":moment().format("h:mm:ss a, dddd, MMMM Do"),
                 "time":new Date(),
                 "flagged":false,     
