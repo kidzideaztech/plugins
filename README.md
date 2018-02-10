@@ -1,7 +1,7 @@
-# Polls
+# Plugins
 
-## The polls plugin for KidzIdeazTECH.
+## What are plugins?
+Plugins are really awesome things that can happen in chat.
 
-
-### How it works
-Polls work completely inside chat messages. By using a dynamic template inside the chat bubble, our message "type" field specifies to pull up the polls templates. Everything else happens inside the template code.
+## How do I code a plugin?
+Write one and make a pull request!
