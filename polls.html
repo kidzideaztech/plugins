@@ -1,0 +1,37 @@
+<template name="chat.poll">
+    <div class="senderRow" style="width: 100%; word-wrap: break-word" tooltip="11 days ago" flow="left">
+        {{#with poll this.pollId}}
+         
+            <h3 style="margin-bottom: 5px;">{{question}}</h3>
+            <strong>Created by: @{{creatorUsername}}</strong><br>
+            {{#if voted}}
+            You have already voted<br>
+            {{/if}}
+            {{#each responses}}
+                <span class="response">{{response}} ({{thisRepVotes}})</span><br>
+            {{/each}}
+        {{/with}}
+    </div>
+</template>
+
+<template name="chat.pollInsert">{{#if creator}}
+    <div class="senderRow" style="width: 100%; word-wrap: break-word" tooltip="11 days ago" flow="left">
+    
+        <strong>Insert a poll <a href="#" id="cancelPoll">Cancel</a></strong><br>
+        <input id="_pollQuestion{{this._id}}" placeholder="Question...">
+        <button id="sendPoll">Submit</button>
+        
+        
+        <!--Needs to be a prompt here to choose the question for the poll, and the responses. This will be again a chat message, since the user will trigger creation of a poll, by typing :poll.create:<br><br>-->
+        <!--Here's the function to create a poll:<br>-->
+        <!--<code>-->
+        <!--    sendPoll(question, responses);<br>-->
+        <!--    <br>-->
+        <!--    question: Question (String)<br>-->
+        <!--    responses: Responses (Array of Strings)<br>-->
+        <!--    <br>-->
+        <!--    Example:<br>-->
+        <!--    sendPoll("What is your name?", ["Nate", "Brandon"]);<br>-->
+        <!--</code>-->
+    </div>
+{{/if}}</template>
