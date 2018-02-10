@@ -1,14 +1,43 @@
 if(Meteor.isClient)
 {
+    Template["chat.pollInsert"].onCreated(function () {
+        boxes = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
+        if(!boxes)
+        {
+            Session.set("_chat.polLInsert-boxes-" + Template.instance().data._id, ["Yes", "No"])
+        }
+    });
+    
     Template["chat.pollInsert"].helpers({
 
         creator: function () {
             return Template.instance().data.pollCreator == Meteor.userId();
+        },
+        
+        boxes: function () {
+            return Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
         }
 
     })
 
     Template["chat.pollInsert"].events({
+        
+        'keyup #pollResponseAdd': function (e,t) {
+            if(e.which == 13)
+            {
+                val = $('#pollResponseAdd').val();
+                $('#pollResponseAdd').val("");
+                boxes = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
+                boxes.push(val);
+                Session.set("_chat.polLInsert-boxes-" + Template.instance().data._id, boxes);
+            }
+        },
+        
+        'click .removeResponse': function (e,t) {
+            boxes = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
+            boxes.splice($(e.currentTarget).attr("id"), 1);
+            Session.set("_chat.polLInsert-boxes-" + Template.instance().data._id, boxes);
+        },
 
         'click #cancelPoll': function (e,t) {
             Meteor.call("_cancelPollRequest", Template.instance().data._id);
@@ -16,7 +45,7 @@ if(Meteor.isClient)
 
         'click #sendPoll': function (e,t) {
             question = $('#_pollQuestion' + Template.instance().data._id).val();
-            responses = ["Yes", "No"]; // TODO User-selected responses. Waiting on UI.
+            responses = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
             Meteor.call("_pollCreate", question, responses, Template.instance().data._id, Template.instance().data.chatId);
 
         },
