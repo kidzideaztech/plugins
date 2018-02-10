@@ -1,19 +1,4 @@
 <template name="chat.poll">
-    <style>
-        .outlineButtonPolls {
-            background-color: transparent;
-            border: 1px solid #00b19d !important;
-            color: #00b19d !important;
-            width:100%;
-            border-radius: 5px;
-            margin-bottom: 0.3em;
-        }
-        .outlineButtonPolls:hover {
-            background-color: #00b19d;
-            border: 1px solid #00b19d !important;
-            color: white !important;
-        }        
-    </style>
     <div class="senderRow" style="width: 100%; word-wrap: break-word" tooltip="11 days ago" flow="left">
         {{#with poll this.pollId}}
          
@@ -23,7 +8,7 @@
                 {{#if voted}}
                 <span class="">{{response}} ({{thisRepVotes}})</span><br>
                 {{else}}
-                <button class="response outlineButtonPolls">{{response}}</button>
+                <button class="response _polls-outlineButtonPolls">{{response}}</button>
                 {{/if}}
             {{/each}}
         {{/with}}
@@ -34,23 +19,15 @@
     <div class="senderRow" style="width: 100%; word-wrap: break-word" tooltip="11 days ago" flow="left">
     
         <strong>Insert a poll <a href="#" id="cancelPoll">Cancel</a></strong><br>
-        <input id="_pollQuestion{{this._id}}" placeholder="Question...">
+        <small>Question</small>
+        <input class="form-control" id="_pollQuestion{{this._id}}" placeholder="Question...">
         
-        
-        
-        <button id="sendPoll">Submit</button>
-        
-        
-        <!--Needs to be a prompt here to choose the question for the poll, and the responses. This will be again a chat message, since the user will trigger creation of a poll, by typing :poll.create:<br><br>-->
-        <!--Here's the function to create a poll:<br>-->
-        <!--<code>-->
-        <!--    sendPoll(question, responses);<br>-->
-        <!--    <br>-->
-        <!--    question: Question (String)<br>-->
-        <!--    responses: Responses (Array of Strings)<br>-->
-        <!--    <br>-->
-        <!--    Example:<br>-->
-        <!--    sendPoll("What is your name?", ["Nate", "Brandon"]);<br>-->
-        <!--</code>-->
+        <small>Responses</small>
+        <input class="form-control" value="" style="margin-bottom: 0.2em;" placeholder="Add another response.." id="pollResponseAdd">
+        {{#each boxes}}
+        <li>{{this}} <a href="#" class="removeResponse" id="{{@index}}"><i class="fa fa-times"></i></a></li>
+        {{/each}}
+        <br>
+        <button id="sendPoll" class="_polls-outlineButtonPolls">Submit</button>
     </div>
 {{/if}}</template>
