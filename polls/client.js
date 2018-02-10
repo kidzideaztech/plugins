@@ -1,10 +1,11 @@
 if(Meteor.isClient)
 {
     Template["chat.pollInsert"].onCreated(function () {
+        Session.set("_chat.pollInsert-errorMessage-" + Template.instance().data._id, "");
         boxes = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
         if(!boxes)
         {
-            Session.set("_chat.polLInsert-boxes-" + Template.instance().data._id, ["Yes", "No"])
+            Session.set("_chat.polLInsert-boxes-" + Template.instance().data._id, []);
         }
     });
     
@@ -16,6 +17,10 @@ if(Meteor.isClient)
         
         boxes: function () {
             return Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
+        },
+        
+        errorMessage: function () {
+            return Session.get("_chat.pollInsert-errorMessage-" + Template.instance().data._id);
         }
 
     })
@@ -43,11 +48,25 @@ if(Meteor.isClient)
             Meteor.call("_cancelPollRequest", Template.instance().data._id);
         },
 
+        'keydown': function (e,t) {
+            Session.set("_chat.pollInsert-errorMessage-" + Template.instance().data._id);  
+        },
+
         'click #sendPoll': function (e,t) {
             question = $('#_pollQuestion' + Template.instance().data._id).val();
             responses = Session.get("_chat.polLInsert-boxes-" + Template.instance().data._id);
-            Meteor.call("_pollCreate", question, responses, Template.instance().data._id, Template.instance().data.chatId);
-
+            if(question.length < 3)
+            {
+                Session.set("_chat.pollInsert-errorMessage-" + Template.instance().data._id, "Enter a question");
+            }
+            else if(responses.length < 2)
+            {
+                Session.set("_chat.pollInsert-errorMessage-" + Template.instance().data._id, "Add at least 2 responses");
+            }
+            else
+            {
+                Meteor.call("_pollCreate", question, responses, Template.instance().data._id, Template.instance().data.chatId);
+            }
         },
 
     });
