@@ -34,6 +34,8 @@ The calling card is the function triggered when the user sends a specific word b
 
 > if(message == ":stickers:") _StickersPlugin.activate(chatId);
 
+No "work" should be done inside the Calling Card, it should simply trigger the plugin's code.
+
 ## Plugin Requirements
 ### Plugins must not interact with native code, methods, or collections
 Plugins must not interact with any of the native's apps collections directly, they must only use the PluginAPI.
