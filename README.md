@@ -59,5 +59,5 @@ All classes, IDs, and names MUST begin with "_Plugins<PluginName". E.g. "_Plugin
 
 #### Used Plugin Names:
 - _PluginsStickers
-- _PluginsPolls
-_ _PluginsFlipACoin
+- _PluginsPolls 
+- _PluginsFlipACoin
