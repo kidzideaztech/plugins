@@ -17,6 +17,9 @@ Disclaimer: Doesn't actually have coins... yet.
 
 ## How does a plugin become created?
 
+0. Get approval for name
+   Since all code is namespaced, choose a name for your plugin before you start writing and reserve it. This way you don't have to re-write your code if the name is taken.
+
 1. Plugin code is written
    Plugin must adhere to the Plugin Requirements
    
