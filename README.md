@@ -22,7 +22,13 @@ Disclaimer: Doesn't actually have coins... yet.
    
 2. Pull Request is filed
    A pull request must be filed for the plugin. The pull request should contain in it's description the plugins "calling card", and the function or method it calls. See requirements for calling cards under Plugin Requirements.
-   
+
+3. We check the code to make sure it meets the Plugin Requirements
+
+4. We test the code to make sure it works
+
+5. If approved, plugin is merged. Plugins are seperate from the KidzIdeazTECH code, but they are heavily cached, meaning it will take a while for it to appear on KidzIdeazTECH unless a refresh is manually triggered.
+
 ## "Calling Card"
 The calling card is the function triggered when the user sends a specific word between colons (e.g. :stickers:).
 
