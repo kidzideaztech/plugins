@@ -30,7 +30,9 @@ Disclaimer: Doesn't actually have coins... yet.
 5. If approved, plugin is merged. Plugins are seperate from the KidzIdeazTECH code, but they are heavily cached, meaning it will take a while for it to appear on KidzIdeazTECH unless a refresh is manually triggered.
 
 ## "Calling Card"
-The calling card is the function triggered when the user sends a specific word between colons (e.g. :stickers:).
+The calling card is the function triggered when the user sends a specific word between colons (e.g. :stickers:). Here's an example:
+
+> if(message == ":stickers:") _StickersPlugin.activate(chatId);
 
 ## Plugin Requirements
 ### Plugins must not interact with native code, methods, or collections
