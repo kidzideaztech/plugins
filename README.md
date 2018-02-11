@@ -1,7 +1,7 @@
 # Plugins
 
 ## What are plugins?
-Plugins are really awesome things that can happen in chat.
+Plugins are "apps" that work entirely inside chat messages. The possibilitys are endless, because you're not just limited to text. Plugins have full control over what happens inside the chat bubble.
 
 ## What are some plugins you have?
 Glad you asked
@@ -14,3 +14,23 @@ Stickers are like emojis, but bigger, and taking up a whole message
 
 #### Flip A Coin
 Disclaimer: Doesn't actually have coins... yet.
+
+## How does a plugin become created?
+
+1. Plugin code is written
+   Plugin must adhere to the Plugin Requirements
+   
+2. Pull Request is filed
+   A pull request must be filed for the plugin. The pull request should contain in it's description the plugins "calling card", and the function or method it calls. See requirements for calling cards under Plugin Requirements.
+   
+## "Calling Card"
+The calling card is the function triggered when the user sends a specific word between colons (e.g. :stickers:).
+
+## Plugin Requirements
+1. Plugins must not interact with native code, methods, or collections
+  1A. Plugins must not interact with any of the native's apps collections directly, they must only use the PluginAPI
+  1B. Plugins must not interact with any of the native's apps server methods, they must only use the PluginAPI
+  1C. Plugins must not interact with any of the native's apps functions, other then the PluginAPI functions
+2. Calling Cards must be short, and only call the plugins code
+  2A. Calling Cards may only call either a Meteor Method setup **inside the plugins code** or a function defined **inside the plugins code**
+  2B. Calling Cards may only be 1 line long. Everything should take place inside the plugin code, the calling card just activates it
