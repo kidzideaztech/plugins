@@ -1,5 +1,5 @@
 <template name="chat.poll">
-    <div class="otherRow" style="max-width: 100%; word-wrap: break-word">
+    <div class="{{#if pollSender}}senderRow{{else}}otherRow{{/if}}" style="max-width: 100%; word-wrap: break-word">
         {{#with poll this.pollId}}
          
             <h3 style="margin-bottom: 5px;">{{question}}</h3>

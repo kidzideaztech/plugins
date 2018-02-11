@@ -72,6 +72,10 @@ if(Meteor.isClient)
     });
 
     Template["chat.poll"].helpers({
+        
+        pollSender: function () {
+            return this.sender == Meteor.userId();
+        },
 
         poll: function (a) {
             Meteor.subscribe("_poll", Template.instance().data.pollId);
