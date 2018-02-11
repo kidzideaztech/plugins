@@ -12,6 +12,14 @@ if(Meteor.isClient)
         }
         
     });
+    
+    Template["chat.stickers"].helpers({
+
+        sender: function () {
+            return this.sender == Meteor.userId();
+        }
+        
+    })
 }
 Meteor.methods({
     
