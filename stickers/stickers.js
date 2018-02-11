@@ -7,7 +7,16 @@ _plugins_stickerMap = {
 
 if(Meteor.isClient)
 {
+    
+    Template["chat.stickers"].onCreated(function () {
+        Session.set("_pluginstickers-showcategory", true);
+    });
+    
     Template["chat.stickers"].events({
+        
+        'click ._pluginemoji': function (e,t) {
+            Session.set("_pluginstickers-showcategory", $(e.currentTarget).attr("id"));
+        },
         
         'click #_stickersClose': function (e,t) {
             Meteor.call("_plugins_stickers_cancel", this._id);
@@ -22,11 +31,16 @@ if(Meteor.isClient)
     
     Template["chat.stickers"].helpers({
 
+        show: function (a) {
+            return Session.get("_pluginstickers-showcategory") == true || Session.get("_pluginstickers-showcategory") == a;
+        },
+
         sender: function () {
             return this.sender == Meteor.userId();
         }
         
-    })
+    });
+    
 }
 Meteor.methods({
     
