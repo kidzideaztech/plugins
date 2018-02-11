@@ -48,4 +48,4 @@ Calling Cards may only call either a Meteor Method setup **inside the plugins co
 Calling Cards may only be 1 line long. Everything should take place inside the plugin code, the calling card just activates it
 
 ### Classes and IDs of HTML elements, as well as names of functions and variables must be namespaced
-All classes, IDs, and names MUST begin with "_Plugins<PluginName". E.g. "_PluginsFlipACoin"
+All classes, IDs, and names MUST begin with "_Plugins<PluginName". E.g. "_PluginsFlipACoin".
