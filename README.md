@@ -29,8 +29,11 @@ The calling card is the function triggered when the user sends a specific word b
 ## Plugin Requirements
 1. Plugins must not interact with native code, methods, or collections
   1A. Plugins must not interact with any of the native's apps collections directly, they must only use the PluginAPI
+  
   1B. Plugins must not interact with any of the native's apps server methods, they must only use the PluginAPI
+  
   1C. Plugins must not interact with any of the native's apps functions, other then the PluginAPI functions
 2. Calling Cards must be short, and only call the plugins code
   2A. Calling Cards may only call either a Meteor Method setup **inside the plugins code** or a function defined **inside the plugins code**
+  
   2B. Calling Cards may only be 1 line long. Everything should take place inside the plugin code, the calling card just activates it
