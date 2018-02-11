@@ -6,6 +6,10 @@ if(Meteor.isClient)
 {
     Template["chat.stickers"].events({
         
+        'click #_stickersClose': function (e,t) {
+            Meteor.call("_plugins_stickers_cancel", this._id);
+        },
+        
         'click ._pluginsticker': function (e,t) {
             stickerId = $(e.currentTarget).attr("id");
             Meteor.call("_plugins_stickers_sendSticker", Template.instance().data.chatId, stickerId, this._id)
@@ -22,6 +26,11 @@ if(Meteor.isClient)
     })
 }
 Meteor.methods({
+    
+    _plugins_stickers_cancel: function (msgId) {
+        chat = Messages.findOne({_id:msgId});
+        if(chat.type == "chat.stickers" && chat.sender == Meteor.userId()) Messages.remove({_id:msgId});
+    },
     
     _plugins_stickers_sendSticker: function (chatId, stickerId, crcid) {
         chat = Messages.findOne({_id:crcid});
