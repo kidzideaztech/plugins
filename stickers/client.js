@@ -8,7 +8,7 @@ if(Meteor.isClient)
         
         'click ._pluginsticker': function (e,t) {
             stickerId = $(e.currentTarget).attr("id");
-            Meteor.call("_plugins_stickers_sendSticker", Template.instance().data._id, stickerId, this._id)
+            Meteor.call("_plugins_stickers_sendSticker", Template.instance().data.chatId, stickerId, this._id)
         }
         
     });
