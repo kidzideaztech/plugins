@@ -21,6 +21,10 @@ if(Meteor.isClient)
         
         errorMessage: function () {
             return Session.get("_chat.pollInsert-errorMessage-" + Template.instance().data._id);
+        },
+        
+        sender: function () {
+            return this.sender == Meteor.userId();
         }
 
     })
