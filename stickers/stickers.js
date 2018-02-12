@@ -60,6 +60,9 @@ Meteor.methods({
     },
     
     _plugins_stickers_sendSticker: function (chatId, stickerId, crcid) {
+        check(chatId, String);
+        check(stickerId, String);
+        check(crcid, String);
         chat = Messages.findOne({_id:crcid});
         if(chat.type == "chat.stickers") Messages.remove({_id:crcid});
         src = _plugins_stickerMap[stickerId];
