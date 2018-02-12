@@ -9,7 +9,7 @@ Meteor.methods({
             userId = Meteor.userId();
             if(poll.voters.indexOf(userId) == -1)
             {
-                _PollsCollection.update({_id:poll._id}, {$addToSet:{["votes." + id]:"hey"}});
+                _PollsCollection.update({_id:poll._id}, {$addToSet:{["votes." + id]:Meteor.userId()}});
                 _PollsCollection.update({_id:poll._id}, {$addToSet:{"voters":userId}});
             }
         }
