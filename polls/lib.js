@@ -19,6 +19,10 @@ if(Meteor.isServer)
         },
 
         _pollCreate: function (question, responses, reqId, chatId) {
+            check(question, String);
+            check(responses, Array);
+            check(reqId, String);
+            check(chatId, Array);
             if(Meteor.user() && Clad.level1())
             {
                 Meteor.call("_cancelPollRequest", reqId); // Cancel the request, since it's been submitted
