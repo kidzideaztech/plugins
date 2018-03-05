@@ -3,6 +3,8 @@ if(Meteor.isServer)
     
     _PluginFlipACoin = function (chatId) {
         
+        check(chatId, String);
+        
         if(Math.random() >= 0.5)
         {
             coin = "Tails";
