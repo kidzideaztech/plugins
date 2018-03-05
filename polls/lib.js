@@ -6,6 +6,8 @@ if(Meteor.isServer)
     Meteor.methods({
 
         _pollVote: function (pollId, id) {
+            check(pollId, String);
+            check(id, String);
             if(Meteor.user() && Clad.level1())
             {
                 poll = _PollsCollection.findOne({_id:pollId});
@@ -73,6 +75,7 @@ if(Meteor.isServer)
         },
 
         _cancelPollRequest: function (messageId) {
+            check(messageId, String);
             if(Meteor.user() && Clad.level1())
             {        
                 message = Messages.findOne({_id:messageId});
