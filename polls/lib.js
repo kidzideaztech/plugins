@@ -7,7 +7,7 @@ if(Meteor.isServer)
 
         _pollVote: function (pollId, id) {
             check(pollId, String);
-            check(id, String);
+            check(id, Number);
             if(Meteor.user() && Clad.level1())
             {
                 poll = _PollsCollection.findOne({_id:pollId});
